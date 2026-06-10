@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" alt="" width="22" height="22">
+    <h1>Skreeen</h1>
+    <span class="tagline">light + dark, one shot</span>
+  </header>
+
+  <main>
+    <button id="btn-area" class="capture">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M4 8V6a2 2 0 0 1 2-2h2M16 4h2a2 2 0 0 1 2 2v2M20 16v2a2 2 0 0 1-2 2h-2M8 20H6a2 2 0 0 1-2-2v-2"/>
+        <rect x="8.5" y="8.5" width="7" height="7" rx="1" stroke-dasharray="2.5 2"/>
+      </svg>
+      <span>
+        <strong>Select a zone</strong>
+        <small>Drag a rectangle on the page</small>
+      </span>
+    </button>
+
+    <button id="btn-full" class="capture">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <rect x="3" y="4" width="18" height="13" rx="2"/>
+        <path d="M8 21h8M12 17v4"/>
+      </svg>
+      <span>
+        <strong>Full window</strong>
+        <small>Capture the visible viewport</small>
+      </span>
+    </button>
+
+    <details>
+      <summary>Settings</summary>
+      <label>
+        <span>Theme switching</span>
+        <select id="strategy">
+          <option value="auto">Auto-detect (recommended)</option>
+          <option value="media">prefers-color-scheme (CSS media)</option>
+          <option value="class">Class / attribute on &lt;html&gt;</option>
+          <option value="both">Both (most aggressive)</option>
+        </select>
+      </label>
+      <label>
+        <span>Settle delay <em id="settle-value">700 ms</em></span>
+        <input id="settle" type="range" min="0" max="3000" step="100" value="700">
+      </label>
+      <p class="note">The delay lets CSS transitions finish before each shot. “prefers-color-scheme” briefly shows Chrome’s debugging banner.</p>
+    </details>
+  </main>
+
+  <footer id="status"></footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

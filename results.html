@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Skreeen — Capture results</title>
+  <link rel="stylesheet" href="results.css">
+  <link rel="icon" href="icons/icon32.png">
+</head>
+<body>
+  <header>
+    <img src="icons/icon32.png" alt="" width="24" height="24">
+    <h1>Skreeen</h1>
+    <div id="meta"></div>
+    <div class="actions">
+      <div class="view-toggle" role="tablist">
+        <button id="view-side" class="active" role="tab">Side by side</button>
+        <button id="view-slider" role="tab">Slider</button>
+      </div>
+      <button id="download-both" class="primary">Download both</button>
+    </div>
+  </header>
+
+  <main>
+    <p id="empty" hidden>Nothing here — this capture has expired or was cleared.</p>
+
+    <section id="side-view" class="grid">
+      <figure>
+        <figcaption>
+          <span class="chip light-chip">☀️ Light</span>
+          <span class="fig-actions">
+            <button data-copy="light">Copy</button>
+            <button data-download="light">Download</button>
+          </span>
+        </figcaption>
+        <img id="img-light" alt="Light mode screenshot">
+      </figure>
+      <figure>
+        <figcaption>
+          <span class="chip dark-chip">🌙 Dark</span>
+          <span class="fig-actions">
+            <button data-copy="dark">Copy</button>
+            <button data-download="dark">Download</button>
+          </span>
+        </figcaption>
+        <img id="img-dark" alt="Dark mode screenshot">
+      </figure>
+    </section>
+
+    <section id="slider-view" hidden>
+      <div class="compare" id="compare">
+        <img id="cmp-dark" alt="Dark mode screenshot">
+        <div class="cmp-top" id="cmp-top"><img id="cmp-light" alt="Light mode screenshot"></div>
+        <div class="cmp-handle" id="cmp-handle"><span>◂ ▸</span></div>
+        <span class="cmp-tag tag-light">Light</span>
+        <span class="cmp-tag tag-dark">Dark</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="results.js"></script>
+</body>
+</html>

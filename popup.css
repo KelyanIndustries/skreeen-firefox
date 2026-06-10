@@ -1,0 +1,155 @@
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --accent: #6366f1;
+  --accent-soft: #eef2ff;
+  --hover: #f9fafb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #111827;
+    --fg: #f9fafb;
+    --muted: #9ca3af;
+    --border: #2d3748;
+    --accent: #818cf8;
+    --accent-soft: #1e2342;
+    --hover: #1a2233;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  width: 320px;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 16px 10px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+main { padding: 0 12px 12px; }
+
+.capture {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s, transform 0.05s;
+}
+
+.capture:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.capture:active { transform: scale(0.985); }
+
+.capture:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.capture svg {
+  width: 26px;
+  height: 26px;
+  flex: none;
+  color: var(--accent);
+}
+
+.capture strong { display: block; font-size: 14px; }
+.capture small { display: block; color: var(--muted); font-size: 12px; }
+
+details {
+  margin-top: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 4px 2px;
+  user-select: none;
+}
+
+details label {
+  display: block;
+  margin: 10px 2px 0;
+  font-size: 12.5px;
+}
+
+details label > span {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+details label em {
+  font-style: normal;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+select, input[type="range"] {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+select {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  font-size: 12.5px;
+}
+
+.note {
+  margin: 10px 2px 2px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+footer {
+  min-height: 18px;
+  padding: 0 16px 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+footer.error { color: #ef4444; }
