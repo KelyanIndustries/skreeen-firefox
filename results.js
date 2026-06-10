@@ -9,7 +9,7 @@ async function init() {
   const id = location.hash.slice(1);
   const key = 'result:' + id;
   result =
-    (await chrome.storage.session.get(key))[key] ||
+    (chrome.storage.session ? (await chrome.storage.session.get(key))[key] : null) ||
     (await chrome.storage.local.get(key))[key];
 
   if (!result) {

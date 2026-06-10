@@ -1,4 +1,4 @@
-const RESTRICTED_URL = /^(chrome|chrome-extension|edge|about|devtools|view-source):|^https:\/\/chrome\.google\.com\/webstore|^https:\/\/chromewebstore\.google\.com/;
+const RESTRICTED_URL = /^(chrome|chrome-extension|moz-extension|firefox|edge|about|devtools|view-source):|^https:\/\/chrome\.google\.com\/webstore|^https:\/\/chromewebstore\.google\.com|^https:\/\/addons\.mozilla\.org/;
 
 const $ = (id) => document.getElementById(id);
 const status = $('status');

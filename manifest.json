@@ -3,12 +3,17 @@
   "name": "Skreeen — Light & Dark Screenshots",
   "version": "1.0.0",
   "description": "Capture a zone or the full window twice: once in light mode, once in dark mode. Auto-detects how each site switches themes.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "skreeen@kelyanindustries",
+      "strict_min_version": "121.0"
+    }
+  },
   "permissions": [
     "activeTab",
     "scripting",
     "storage",
     "unlimitedStorage",
-    "debugger",
     "notifications"
   ],
   "action": {
@@ -22,7 +27,8 @@
     }
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
   },
   "icons": {
     "16": "icons/icon16.png",

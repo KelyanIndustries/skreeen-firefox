@@ -11,7 +11,10 @@ const DEFAULT_SETTINGS = {
   settleMs: 700, // wait after switching theme (transitions, repaints)
 };
 
-const RESTRICTED_URL = /^(chrome|chrome-extension|edge|about|devtools|view-source):|^https:\/\/chrome\.google\.com\/webstore|^https:\/\/chromewebstore\.google\.com/;
+const RESTRICTED_URL = /^(chrome|chrome-extension|moz-extension|firefox|edge|about|devtools|view-source):|^https:\/\/chrome\.google\.com\/webstore|^https:\/\/chromewebstore\.google\.com|^https:\/\/addons\.mozilla\.org/;
+
+// chrome.debugger is Chrome-only; Firefox lacks CDP access from extensions.
+const HAS_DEBUGGER = typeof chrome?.debugger?.attach === 'function';
 
 let busy = false;
 
@@ -59,8 +62,8 @@ async function runCapture(mode, tab) {
     const markers = (await exec(tabId, detectThemeMarkers)) || [];
     strategy = markers.length ? 'class' : 'media';
   }
-  const useMedia = strategy === 'media' || strategy === 'both';
-  const useClass = strategy === 'class' || strategy === 'both';
+  const useMedia = (strategy === 'media' || strategy === 'both') && HAS_DEBUGGER;
+  const useClass = strategy === 'class' || strategy === 'both' || (strategy === 'media' && !HAS_DEBUGGER);
 
   let attached = false;
   let savedState = null;
@@ -372,11 +375,13 @@ function clamp(v, min, max) {
 
 async function storeResult(id, result) {
   const entry = { ['result:' + id]: result };
-  try {
-    await chrome.storage.session.set(entry);
-  } catch {
-    await chrome.storage.local.set(entry); // session quota exceeded → local
+  if (chrome.storage.session) {
+    try {
+      await chrome.storage.session.set(entry);
+      return;
+    } catch {}
   }
+  await chrome.storage.local.set(entry);
 }
 
 async function cleanOldResults() {

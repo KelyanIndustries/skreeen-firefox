@@ -161,6 +161,9 @@ figure img,
   background:
     repeating-conic-gradient(var(--checker) 0% 25%, transparent 0% 50%)
     0 0 / 20px 20px;
+  -webkit-user-drag: none;
+  user-drag: none;
+  pointer-events: none;
 }
 
 /* --- slider compare --- */
