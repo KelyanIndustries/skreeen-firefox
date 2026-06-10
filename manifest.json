@@ -5,7 +5,6 @@
   "description": "Capture a zone or the full window twice: once in light mode, once in dark mode. Auto-detects how each site switches themes.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "skreeen@kelyanindustries",
       "strict_min_version": "121.0"
     }
   },
@@ -14,6 +13,7 @@
     "scripting",
     "storage",
     "unlimitedStorage",
+    "debugger",
     "notifications"
   ],
   "action": {
